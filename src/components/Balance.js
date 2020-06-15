@@ -1,0 +1,45 @@
+import React, { useContext } from 'react'
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import { GlobalContext } from "../context/GlobalState";
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        padding: theme.spacing(2),
+        color: 'white',
+        marginTop: '16px',
+        // marginLeft: '1em',
+        // marginRight: '1em',
+        backgroundColor: theme.palette.primary.main
+    },
+}));
+
+const Balance = () => {
+    const classes = useStyles();
+    const { transactions } = useContext(GlobalContext);
+    const balance = transactions
+        .reduce((accumulator, currentValue) => accumulator + currentValue.amount, 0)
+        .toFixed(2);
+
+
+    return (
+        <div className={classes.root}>
+            <Grid container spacing={2} alignItems="center"justify="center">
+                <Grid item xs={11} sm={6}>
+                    <Paper className={classes.paper} color="primary">
+                        <Typography variant="h6">YOUR BALANCE</Typography>
+                        <Typography variant="h4">{balance} $</Typography>
+                    </Paper>
+                </Grid>
+            </Grid>
+        </div>
+
+    )
+}
+
+export default Balance;
