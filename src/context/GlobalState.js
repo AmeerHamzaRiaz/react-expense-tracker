@@ -4,9 +4,11 @@ import Reducer from './Reducer';
 // Store
 const initialState = {
     transactions:
-        [{ id: 1, name: 'Food', amount: -1233 },
-        { id: 2, name: 'Salary', amount: 5000 },
-        { id: 3, name: 'Tax', amount: -1223 }],
+        [
+        //     { id: 1, name: 'Food', amount: -1233 },
+        // { id: 2, name: 'Salary', amount: 5000 },
+        // { id: 3, name: 'Tax', amount: -1223 }
+    ],
     isModalOpen: false,
     name: '',
     amount: 0.00,

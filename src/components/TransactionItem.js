@@ -17,6 +17,14 @@ import Slide from '@material-ui/core/Slide';
 const TransactionItem = (props) => {
     const { deleteTransaction } = useContext(GlobalContext);
 
+    const formatAmount = (amount) => {
+        return (new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+        }).format(amount))
+    }
+
+
     return (
         <Slide direction="up" in={true} mountOnEnter unmountOnExit>
             <ListItem divider={!props.isLast} >
@@ -37,7 +45,7 @@ const TransactionItem = (props) => {
                 </ListItemAvatar>
 
                 <ListItemText
-                    primary={props.amount + " $"}
+                    primary={formatAmount(props.amount)}
                     secondary={props.name}
                 />
 
