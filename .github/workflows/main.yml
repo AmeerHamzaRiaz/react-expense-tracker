@@ -40,6 +40,8 @@ jobs:
     # Now building yarn
     - name: building yarn
       uses: borales/actions-yarn@v2.0.0
+      env:
+          CI: false # CRA treats warnings as errors in CI - re-enable if needed
       with:
           cmd: build # will run `yarn build` command
           
