@@ -29,7 +29,6 @@ export default (state, action) => {
 
         case 'ADD_TRANSACTION': {
             let newTransaction = { id: Date.now(), amount: parseInt(state.amount), name: state.name };
-            console.log(newTransaction)
 
             return {
                 ...state,

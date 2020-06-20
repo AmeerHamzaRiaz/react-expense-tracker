@@ -22,9 +22,6 @@ const TransactionModal = () => {
         <form onSubmit={e => onFormSubmit(e)}>
           <DialogTitle id="form-dialog-title">Add New Transaction</DialogTitle>
           <DialogContent>
-            <DialogContentText>
-              Enter transaction amount and name. Negative amount = Expense, while Positive amount = Income
-          </DialogContentText>
             <TextField
               autoFocus
               margin="dense"
@@ -45,6 +42,11 @@ const TransactionModal = () => {
               onChange={(e) => setAmount(e.target.value)}
               value={amount}
             />
+            <DialogContentText>
+              Negative amount = Expense
+              <br />
+              Positive amount = Income
+          </DialogContentText>
           </DialogContent>
 
           <DialogActions>
