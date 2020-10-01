@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TransactionItem from './TransactionItem';
 import { GlobalContext } from "../context/GlobalState";
+import { Container } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   demo: {
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   list: {
     marginLeft: '1em',
     marginRight: '1em',
-},
+  },
 }));
 
 const TransactionsList = () => {
@@ -25,27 +26,28 @@ const TransactionsList = () => {
   const classes = useStyles();
 
   return (
-    <Grid container alignItems="center" justify="center" >
-      {
-        transactions.length !== 0 && <Grid item xs={12} sm={6}>
-          <Typography variant="h6" className={classes.title} align="center">
-            RECENT TRANSACTIONS
+    <Container>
+      <Grid container alignItems="center" justify="center" >
+        {
+          transactions.length !== 0 && <Grid item xs={12} sm={6}>
+            <Typography variant="h6" className={classes.title} align="center">
+              RECENT TRANSACTIONS
           </Typography>
-          <div className={classes.demo}>
-            <List>
-              {transactions.map((item,index) => <TransactionItem
-                key={item.id}
-                id={item.id}
-                amount={item.amount}
-                name={item.name}
-                isLast={index  === transactions.length - 1}
+            <div className={classes.demo}>
+              <List>
+                {transactions.map((item, index) => <TransactionItem
+                  key={item.id}
+                  id={item.id}
+                  amount={item.amount}
+                  name={item.name}
+                  isLast={index === transactions.length - 1}
                 />)}
-            </List>
-          </div>
-        </Grid>
-      }
-
-    </Grid>
+              </List>
+            </div>
+          </Grid>
+        }
+      </Grid>
+    </Container>
   );
 }
 
