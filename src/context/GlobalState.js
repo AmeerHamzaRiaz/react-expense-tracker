@@ -50,6 +50,14 @@ export const GlobalProvider = ({ children }) => {
         })
     }
     
+    function loadTransactions(transactions) {
+        console.log('CALLED 😊')
+        dispatch({
+            type: 'LOAD_TRANSACTION',
+            payload: [...transactions]
+        })
+    }
+
     return (<GlobalContext.Provider
         value={{
             transactions: state.transactions,
@@ -57,6 +65,7 @@ export const GlobalProvider = ({ children }) => {
             name: state.name,
             amount: state.amount,
             deleteTransaction,
+            loadTransactions,
             addTransaction,
             toggleModal,
             setAmount,

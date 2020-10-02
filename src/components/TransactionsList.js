@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Grid from '@material-ui/core/Grid';
@@ -21,9 +21,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TransactionsList = () => {
-  const { transactions } = useContext(GlobalContext);
+  const { transactions, loadTransactions } = useContext(GlobalContext);
 
   const classes = useStyles();
+
+  const loadTransactionsFromStorage = () => {
+    const transactionsJSON = localStorage.getItem('TRANSACTIONS');
+    console.log(transactionsJSON)
+    if (transactionsJSON) {
+      // addTransaction()
+      const transactions = JSON.parse(transactionsJSON);
+      console.log(transactions)
+      loadTransactions(transactions);
+    }
+  }
+
+
+  useEffect(() => {
+    loadTransactionsFromStorage();
+  }, []);
 
   return (
     <Container>

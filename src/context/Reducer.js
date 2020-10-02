@@ -2,9 +2,15 @@ export default (state, action) => {
     switch (action.type) {
 
         case 'DELETE_TRANSACTION':
-            return {
-                ...state,
-                transactions: state.transactions.filter(item => item.id !== action.payload)
+            {
+                const updatedTransactions = state.transactions.filter(item => item.id !== action.payload);
+                localStorage.setItem('TRANSACTIONS', JSON.stringify(updatedTransactions));
+
+                return {
+                    ...state,
+                    transactions: updatedTransactions
+                }
+
             }
 
         case 'TOGGLE_MODAL':
@@ -28,17 +34,25 @@ export default (state, action) => {
             }
 
         case 'ADD_TRANSACTION': {
-            let newTransaction = { id: Date.now(), amount: parseInt(state.amount), name: state.name };
+            const newTransaction = { id: Date.now(), amount: parseInt(state.amount), name: state.name };
+            const updatedTransactions = [...state.transactions, newTransaction];            
+            localStorage.setItem('TRANSACTIONS', JSON.stringify(updatedTransactions));
 
             return {
                 ...state,
                 isModalOpen: !state.isModalOpen,
                 amount: 0.00,
                 name: '',
-                transactions: [...state.transactions, newTransaction]
+                transactions: updatedTransactions
             }
         }
 
+        case 'LOAD_TRANSACTION': {
+            return{
+                ...state,
+                transactions: [...action.payload]
+            }
+        }
 
         default:
             return state;
